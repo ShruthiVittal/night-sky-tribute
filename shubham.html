@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You, Shubham</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg1: #0d1b3d;
+      --bg2: #122550;
+      --bg3: #0a1533;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 40%, var(--bg3) 100%);
+      background-size: cover;
+      font-family: 'Open Sans', sans-serif;
+      overflow: hidden;
+      position: relative;
+      color: white;
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .center-message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      padding: 30px 25px;
+      border-radius: 20px;
+      text-align: center;
+      animation: fadeIn 2s ease, pulseGlow 3s ease-in-out infinite;
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+      width: 90%;
+      max-width: 500px;
+      z-index: 10;
+    }
+
+    .center-message h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .center-message p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #fff;
+    }
+
+    .center-message .poetic {
+      position: relative;
+      font-size: 16px;
+      line-height: 1.9;
+      letter-spacing: 0.2px;
+      color: #eaf2ff;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    }
+
+    .center-message .poetic::before {
+      content: "\201C";
+      /* opening quote */
+      position: absolute;
+      left: -8px;
+      top: -14px;
+      font-family: Georgia, serif;
+      font-size: 46px;
+      line-height: 1;
+      color: rgba(255, 255, 255, 0.15);
+    }
+
+    .center-message .glow {
+      color: #dfe9ff;
+      text-shadow: 0 0 8px rgba(160, 200, 255, 0.35), 0 0 16px rgba(120, 170, 255, 0.25);
+      font-family: 'Great Vibes', cursive;
+      font-style: normal;
+      font-weight: 400;
+    }
+
+    .center-message .divider {
+      width: 60%;
+      height: 1px;
+      margin: 14px auto;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0));
+      border-radius: 2px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+      }
+
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    @keyframes pulseGlow {
+
+      0%,
+      100% {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      }
+
+      50% {
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+      }
+    }
+
+    .quote {
+      position: absolute;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.6);
+      animation: floatDown 30s linear infinite;
+      white-space: nowrap;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+      z-index: 5;
+    }
+
+    @keyframes floatDown {
+      0% {
+        transform: translateY(-100vh);
+      }
+
+      100% {
+        transform: translateY(100vh);
+      }
+    }
+
+    /* Night sky layers */
+    .sky {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .vignette {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.6);
+      z-index: 9;
+    }
+
+    .moon {
+      position: fixed;
+      top: 6vh;
+      right: 6vw;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #ffffff 0%, #dcdde1 45%, #b2bec3 60%, rgba(0, 0, 0, 0.05) 100%);
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.4), 0 0 80px rgba(255, 255, 255, 0.2);
+      filter: brightness(1.1);
+      z-index: 3;
+    }
+
+    .starfield {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+    }
+
+    .twinkle-star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: #ffffff;
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: twinkle ease-in-out infinite;
+    }
+
+    .twinkle-star.big {
+      width: 3px;
+      height: 3px;
+      opacity: 0.8;
+    }
+
+    .twinkle-star.tiny {
+      width: 1px;
+      height: 1px;
+      opacity: 0.5;
+    }
+
+    @keyframes twinkle {
+
+      0%,
+      100% {
+        opacity: 0.2;
+        transform: scale(0.9);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+    }
+
+    .shooting-star {
+      position: fixed;
+      top: -12vh;
+      left: 0;
+      width: 0;
+      height: 0;
+      opacity: 0;
+      z-index: 4;
+      animation: shoot 1.2s ease-out forwards;
+      filter: drop-shadow(0 0 8px rgba(100, 160, 255, 0.9));
+      transform: rotate(var(--angle, 8deg));
+    }
+
+    .shooting-star::before {
+      content: "";
+      position: absolute;
+      left: -3px;
+      top: 0;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffffff 0%, #cfe6ff 40%, rgba(207, 230, 255, 0.6) 60%, rgba(255, 255, 255, 0) 70%);
+      box-shadow: 0 0 8px rgba(140, 190, 255, 0.9), 0 0 16px rgba(120, 170, 255, 0.7);
+    }
+
+    .shooting-star::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: -160px;
+      width: 1px;
+      height: 160px;
+      background: linear-gradient(180deg, rgba(14, 120, 255, 0), rgba(170, 205, 255, 0.7) 70%, rgba(255, 255, 255, 0.95) 95%, rgba(255, 255, 255, 0) 100%);
+      filter: blur(0.2px) drop-shadow(0 0 4px rgba(120, 170, 255, 0.9));
+    }
+
+    /* Fireball variant (brighter, warmer, slightly larger and faster) */
+    .shooting-star.fireball {
+      animation-duration: 0.9s;
+      filter: drop-shadow(0 0 12px rgba(255, 200, 120, 0.95));
+    }
+
+    .shooting-star.fireball::before {
+      left: -4px;
+      width: 8px;
+      height: 8px;
+      background: radial-gradient(circle, #ffffff 0%, #ffe3b5 45%, rgba(255, 210, 140, 0.65) 65%, rgba(255, 255, 255, 0) 75%);
+      box-shadow: 0 0 14px rgba(255, 210, 140, 0.95), 0 0 28px rgba(255, 190, 120, 0.8);
+    }
+
+    .shooting-star.fireball::after {
+      width: 2px;
+      top: -200px;
+      height: 200px;
+      background: linear-gradient(180deg, rgba(255, 190, 120, 0), rgba(255, 220, 160, 0.75) 60%, rgba(255, 255, 255, 0.95) 92%, rgba(255, 255, 255, 0) 100%);
+      filter: blur(0.3px) drop-shadow(0 0 6px rgba(255, 210, 150, 0.95));
+    }
+
+    @keyframes shoot {
+      0% {
+        transform: rotate(var(--angle, 8deg)) translate3d(0, 0, 0);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      60% {
+        opacity: 0.6;
+      }
+
+      100% {
+        transform: rotate(var(--angle, 8deg)) translate3d(0, 120vh, 0);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .center-message h1 {
+        font-size: 32px;
+      }
+
+      .center-message p {
+        font-size: 14px;
+      }
+
+      .center-message .poetic {
+        font-size: 15px;
+      }
+    }
+
+    /* Tiny audio consent chip */
+    #audioConsent {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.15);
+      color: #eaf2ff;
+      backdrop-filter: blur(6px);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+      z-index: 1001;
+      user-select: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="sky" aria-hidden="true">
+    <div class="starfield" id="starfield"></div>
+  </div>
+  <div class="moon" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="center-message">
+    <h1>Thank You, Shubham</h1>
+    <p class="poetic">In the vast night sky of my life, when everything felt heavy and endless,<br>
+      you were the <span class="glow">one bright star</span> that stayed — constant, quiet, and full of hope.<br>
+      I made a <span class="glow">silent wish</span> in those dark moments… and somehow, it was you.
+    </p>
+    <div class="divider"></div>
+    <p class="poetic">You’ve been my <span class="glow">light</span> when I couldn’t see, my <span
+        class="glow">strength</span> when I couldn’t stand.<br>
+      You're not just my best friend — you’re the <span class="glow">miracle</span> the god gave me.<br>
+      I’ll never forget what you’ve done for me. Never.
+    </p>
+  </div>
+
+  <audio id="bgMusic" src="music/holy-night-11014.mp3" loop autoplay preload="auto" playsinline></audio>
+  <div id="audioConsent" style="display:none;" aria-live="polite">Tap to enable sound</div>
+
+  <script>
+    const quotes = [
+      "You always gets me.",
+      "You showed up when\nno one else did.",
+      "Your support changed\neverything.",
+      "You never judged me.",
+      "You made me feel seen.",
+      "You matter more\nthan you know.",
+      "You reminds me\nwho I am.",
+      "You lifts me\nwithout trying.",
+      "You are the proof that good\npeople exist.",
+      "You brings peace\nto chaos."
+    ];
+
+    for (let i = 0; i < 20; i++) {
+      const quote = document.createElement('div');
+      quote.classList.add('quote');
+      quote.innerText = quotes[Math.floor(Math.random() * quotes.length)];
+      quote.style.left = `${Math.random() * 100}%`;
+      quote.style.top = `${Math.random() * 100}%`;
+      quote.style.animationDuration = `${20 + Math.random() * 30}s`;
+      document.body.appendChild(quote);
+    }
+
+    // Twinkling starfield
+    const starfield = document.getElementById('starfield');
+    const totalStars = 220;
+    for (let i = 0; i < totalStars; i++) {
+      const star = document.createElement('span');
+      star.className = 'twinkle-star';
+      const sizeRoll = Math.random();
+      if (sizeRoll > 0.9) star.classList.add('big');
+      else if (sizeRoll < 0.2) star.classList.add('tiny');
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.animationDuration = `${2 + Math.random() * 4}s`;
+      star.style.animationDelay = `${Math.random() * 6}s`;
+      starfield.appendChild(star);
+    }
+
+    // Shooting stars
+    function spawnShootingStar(options = { fireball: false }) {
+      const active = document.querySelectorAll('.shooting-star').length;
+      const maxAllowed = options.fireball ? 1 : 1; // still one-at-a-time by default
+      if (active >= maxAllowed) return;
+      const meteor = document.createElement('div');
+      meteor.className = 'shooting-star' + (options.fireball ? ' fireball' : '');
+      const startX = 10 + Math.random() * 80; // vw, safe bounds for diagonal
+      const sign = Math.random() < 0.5 ? -1 : 1;
+      const angle = sign * (20 + Math.random() * 15); // ~20°–35°
+      meteor.style.left = `${startX}vw`;
+      meteor.style.top = `-12vh`;
+      meteor.style.setProperty('--angle', `${angle}deg`);
+      if (!options.fireball) {
+        meteor.style.animationDuration = `${0.8 + Math.random() * 0.6}s`;
+      }
+      document.body.appendChild(meteor);
+      meteor.addEventListener('animationend', () => meteor.remove());
+    }
+
+    function spawnDoubleMeteor() {
+      // Only if none currently on screen
+      if (document.querySelectorAll('.shooting-star').length > 0) return;
+      spawnShootingStar();
+      setTimeout(() => spawnShootingStar(), 120);
+    }
+
+    // Cadence: mostly single; rare fireball or double
+    setInterval(() => {
+      const roll = Math.random();
+      if (roll < 0.06) {
+        spawnShootingStar({ fireball: true });
+      } else if (roll < 0.10) {
+        spawnDoubleMeteor();
+      } else {
+        spawnShootingStar();
+      }
+    }, 1600);
+
+    // Background music autoplay with gentle fade-in and fallback
+    const audio = document.getElementById('bgMusic');
+    const consentEl = document.getElementById('audioConsent');
+    function fadeIn(targetVol = 0.6, durationMs = 2000) {
+      const steps = 20;
+      const stepMs = durationMs / steps;
+      let current = 0;
+      audio.volume = 0;
+      const id = setInterval(() => {
+        current++;
+        audio.volume = Math.min(targetVol, (current / steps) * targetVol);
+        if (current >= steps) clearInterval(id);
+      }, stepMs);
+    }
+
+    function tryStart() {
+      audio.play().then(() => {
+        fadeIn(0.6, 1800);
+      }).catch(() => {
+        // If blocked, show consent prompt
+        consentEl.style.display = 'inline-flex';
+        const resume = () => {
+          localStorage.setItem('audioConsent', 'true');
+          consentEl.style.display = 'none';
+          audio.play().then(() => fadeIn(0.6, 1800));
+          window.removeEventListener('pointerdown', resume);
+          window.removeEventListener('keydown', resume);
+          consentEl.removeEventListener('click', resume);
+        };
+        window.addEventListener('pointerdown', resume, { once: true });
+        window.addEventListener('keydown', resume, { once: true });
+        consentEl.addEventListener('click', resume, { once: true });
+      });
+    }
+
+    window.addEventListener('load', () => {
+      const hasConsent = localStorage.getItem('audioConsent') === 'true';
+      if (hasConsent) {
+        tryStart();
+      } else {
+        // Attempt muted autoplay to satisfy policies, then request consent
+        audio.muted = true;
+        audio.play().finally(() => {
+          audio.pause();
+          audio.muted = false;
+          tryStart();
+        });
+      }
+    });
+  </script>
+
+</body>
+
+</html>
